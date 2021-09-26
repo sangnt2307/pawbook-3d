@@ -126,8 +126,8 @@ export default class World
 
     update()
     {
-        if(this.pink)
-            this.pink.update()
+        // if(this.pink)
+        //     this.pink.update()
 
         // if(this.googleLeds)
         //     this.googleLeds.update()

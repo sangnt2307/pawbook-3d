@@ -30,8 +30,8 @@ export default class CoffeeSteam
     {
         this.model = {}
         
+        console.log(this.resources.items.pinkModel)
         this.model.mesh = this.resources.items.pinkModel.scene.children[0]
-
         this.model.bakedPinkTexture = this.resources.items.bakedPink
         this.model.bakedPinkTexture.encoding = THREE.sRGBEncoding
         this.model.bakedPinkTexture.flipY = false

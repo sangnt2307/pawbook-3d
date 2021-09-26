@@ -28,7 +28,7 @@ export default class Navigation
         this.view.spherical.limits.radius = { min: 10, max: 50 }
         this.view.spherical.limits.phi = { min: 0.01, max: Math.PI * 0.5 }
         this.view.spherical.limits.theta = { min: - Math.PI * 0.5, max:  Math.PI * 4 }
-
+        
         this.view.target = {}
         this.view.target.value = new THREE.Vector3(0, 0, 0)
         // this.view.target.value.set(0, 3, -3)
@@ -50,7 +50,7 @@ export default class Navigation
         this.view.drag.alternative = false
 
         this.view.zoom = {}
-        this.view.zoom.sensitivity = 0.01
+        this.view.zoom.sensitivity = 0.05
         this.view.zoom.delta = 0
 
         /**
@@ -208,7 +208,7 @@ export default class Navigation
         else
         {
             this.view.spherical.value.theta -= this.view.drag.delta.x * this.view.drag.sensitivity / this.config.smallestSide
-            this.view.spherical.value.phi -= this.view.drag.delta.y * this.view.drag.sensitivity / this.config.smallestSide    
+            // this.view.spherical.value.phi -= this.view.drag.delta.y * this.view.drag.sensitivity / this.config.smallestSide
         
             // Apply limits
             this.view.spherical.value.theta = Math.min(Math.max(this.view.spherical.value.theta, this.view.spherical.limits.theta.min), this.view.spherical.limits.theta.max)
@@ -227,6 +227,7 @@ export default class Navigation
         this.view.target.smoothed.x += (this.view.target.value.x - this.view.target.smoothed.x) * this.view.target.smoothing * this.time.delta
         this.view.target.smoothed.y += (this.view.target.value.y - this.view.target.smoothed.y) * this.view.target.smoothing * this.time.delta
         this.view.target.smoothed.z += (this.view.target.value.z - this.view.target.smoothed.z) * this.view.target.smoothing * this.time.delta
+        
 
         const viewPosition = new THREE.Vector3()
         viewPosition.setFromSpherical(this.view.spherical.smoothed)
@@ -236,3 +237,4 @@ export default class Navigation
         this.camera.modes.default.instance.lookAt(this.view.target.smoothed)
     }
 }
+

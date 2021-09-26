@@ -48,7 +48,7 @@ export default class Camera
         this.modes.debug.instance.position.set(-15,15,15)
         
         this.modes.debug.orbitControls = new OrbitControls(this.modes.debug.instance, this.targetElement)
-        this.modes.debug.orbitControls.enabled = false
+        this.modes.debug.orbitControls.enabled = true
         this.modes.debug.orbitControls.screenSpacePanning = true
         this.modes.debug.orbitControls.enableKeys = false
         this.modes.debug.orbitControls.zoomSpeed = 0.25
