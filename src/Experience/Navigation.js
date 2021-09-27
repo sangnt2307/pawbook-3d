@@ -87,28 +87,28 @@ export default class Navigation
         this.view.onMouseDown = (_event) =>
         {
             _event.preventDefault()
-
+            
             this.view.drag.alternative = _event.button === 2 || _event.button === 1 || _event.ctrlKey || _event.shiftKey
-
+            
             this.view.down(_event.clientX, _event.clientY)
-
+            
             window.addEventListener('mouseup', this.view.onMouseUp)
             window.addEventListener('mousemove', this.view.onMouseMove)
         }
-
+        
         this.view.onMouseMove = (_event) =>
         {
             _event.preventDefault()
             
             this.view.move(_event.clientX, _event.clientY)
         }
-
+        
         this.view.onMouseUp = (_event) =>
         {
             _event.preventDefault()
             
             this.view.up()
-
+            
             window.removeEventListener('mouseup', this.view.onMouseUp)
             window.removeEventListener('mousemove', this.view.onMouseMove)
         }
@@ -188,22 +188,22 @@ export default class Navigation
         // Drag
         if(this.view.drag.alternative)
         {
-            const up = new THREE.Vector3(0, 1, 0)
-            const right = new THREE.Vector3(- 1, 0, 0)
+            // const up = new THREE.Vector3(0, 1, 0)
+            // const right = new THREE.Vector3(- 1, 0, 0)
 
-            up.applyQuaternion(this.camera.modes.default.instance.quaternion)
-            right.applyQuaternion(this.camera.modes.default.instance.quaternion)
+            // up.applyQuaternion(this.camera.modes.default.instance.quaternion)
+            // right.applyQuaternion(this.camera.modes.default.instance.quaternion)
 
-            up.multiplyScalar(this.view.drag.delta.y * 0.01)
-            right.multiplyScalar(this.view.drag.delta.x * 0.01)
+            // up.multiplyScalar(this.view.drag.delta.y * 0.01)
+            // right.multiplyScalar(this.view.drag.delta.x * 0.01)
 
-            this.view.target.value.add(up)
-            this.view.target.value.add(right)
+            // this.view.target.value.add(up)
+            // this.view.target.value.add(right)
 
-            // Apply limits
-            this.view.target.value.x = Math.min(Math.max(this.view.target.value.x, this.view.target.limits.x.min), this.view.target.limits.x.max)
-            this.view.target.value.y = Math.min(Math.max(this.view.target.value.y, this.view.target.limits.y.min), this.view.target.limits.y.max)
-            this.view.target.value.z = Math.min(Math.max(this.view.target.value.z, this.view.target.limits.z.min), this.view.target.limits.z.max)
+            // // Apply limits
+            // this.view.target.value.x = Math.min(Math.max(this.view.target.value.x, this.view.target.limits.x.min), this.view.target.limits.x.max)
+            // this.view.target.value.y = Math.min(Math.max(this.view.target.value.y, this.view.target.limits.y.min), this.view.target.limits.y.max)
+            // this.view.target.value.z = Math.min(Math.max(this.view.target.value.z, this.view.target.limits.z.min), this.view.target.limits.z.max)
         }
         else
         {
@@ -211,8 +211,8 @@ export default class Navigation
             // this.view.spherical.value.phi -= this.view.drag.delta.y * this.view.drag.sensitivity / this.config.smallestSide
         
             // Apply limits
-            this.view.spherical.value.theta = Math.min(Math.max(this.view.spherical.value.theta, this.view.spherical.limits.theta.min), this.view.spherical.limits.theta.max)
-            this.view.spherical.value.phi = Math.min(Math.max(this.view.spherical.value.phi, this.view.spherical.limits.phi.min), this.view.spherical.limits.phi.max)
+            // this.view.spherical.value.theta = Math.min(Math.max(this.view.spherical.value.theta, this.view.spherical.limits.theta.min), this.view.spherical.limits.theta.max)
+            // this.view.spherical.value.phi = Math.min(Math.max(this.view.spherical.value.phi, this.view.spherical.limits.phi.min), this.view.spherical.limits.phi.max)
         }
 
         this.view.drag.delta.x = 0

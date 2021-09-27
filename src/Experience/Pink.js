@@ -4,7 +4,7 @@ import Experience from './Experience.js'
 import vertexShader from './shaders/baked/vertex.glsl'
 import fragmentShader from './shaders/baked/fragment.glsl'
 
-export default class CoffeeSteam
+export default class Pink
 {
     constructor()
     {
@@ -62,12 +62,27 @@ export default class CoffeeSteam
 
         this.model.mesh.scale.set(2,2,2)
         this.model.mesh.rotation.z = Math.PI 
+        this.model.mesh.position.set(0,0,0)
+        this.model.mesh.visible = false
         
         this.scene.add(this.model.mesh)
 
         // Debug
+        this.params = {}
+        this.params.visible = false
+        
         if(this.debug)
         {
+            this.debugFolder
+            .addInput(
+                this.params,
+                'visible',
+                { options: {ON: true, OFF: false} }
+            )
+            .on('change', () =>
+            {
+                this.model.mesh.visible = this.params.visible
+            })
         }
     }
 

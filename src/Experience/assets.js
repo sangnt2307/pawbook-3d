@@ -28,6 +28,8 @@ export default [
             // { name: 'roomModel', source: '/assets/roomModel.glb' },
             { name: 'bakedPink', source: '/assets/bakedPink.jpg', type: 'texture' },
             { name: 'pinkModel', source: '/assets/pink.glb' },
+            { name: 'bakedRiu', source: '/assets/bakedRiu.jpg', type: 'texture' },
+            { name: 'riuModel', source: '/assets/riu.glb' },
         ]
     }
 ]

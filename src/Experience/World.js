@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
 import Pink from './Pink.js'
+import Riu from './Riu.js'
 // import Baked from './Baked.js'
 // import GoogleLeds from './GoogleLeds.js'
 // import LoupedeckButtons from './LoupedeckButtons.js'
@@ -24,6 +25,7 @@ export default class World
             if(_group.name === 'base')
             {
                 this.setPink()
+                this.setRiu()
                 // this.setLights()
                 // this.setBaked()
                 // this.setGoogleLeds()
@@ -41,6 +43,12 @@ export default class World
     {
         this.pink = new Pink()
     }
+
+    setRiu()
+    {
+        this.riu = new Riu()
+    }
+
     setLights()
     {
         this.lights = {}
@@ -129,6 +137,9 @@ export default class World
         // if(this.pink)
         //     this.pink.update()
 
+        if(this.riu)
+            this.riu.update()
+        
         // if(this.googleLeds)
         //     this.googleLeds.update()
 
