@@ -37,8 +37,8 @@ export default [
             { name: 'bakedRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
             // material2
             { name: 'colorRiu', source: '/assets/Riu/colorRiu.jpg', type: 'texture' },
-            { name: 'roughnessRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
-            { name: 'metalnessRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
+            { name: 'roughnessRiu', source: '/assets/Riu/normalRiu.jpg', type: 'texture' },
+            { name: 'metalnessRiu', source: '/assets/Riu/metalnessRiu.jpg', type: 'texture' },
             // { name: 'normalRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
             { name: 'displacementRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
         ]

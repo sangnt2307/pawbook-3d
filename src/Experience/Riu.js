@@ -77,10 +77,10 @@ export default class Riu
                 map: this.model.colorRiuTexture,
                 side: THREE.DoubleSide,
                 transparent: true,
-                // roughnessMap: this.model.roughnessRiuTexture,
-                roughness: 0.25,
-                // metalnessMap: this.model.metalnessRiuTexture,
-                metalness: 1,
+                roughnessMap: this.model.roughnessRiuTexture,
+                // roughness: 0,
+                metalnessMap: this.model.metalnessRiuTexture,
+                // metalness: 0,
                 
             }
         )
@@ -105,8 +105,10 @@ export default class Riu
 
         this.params = {}
         this.params.visible = true
-        this.params.metalnessMap = false
-        this.params.roughnessMap = false
+        this.params.metalnessMap = true
+        this.params.metalness = 0
+        this.params.roughnessMap = true
+        this.params.roughness = 0
         this.params.play = true
         this.params.speed = 10
         // Debug
@@ -125,16 +127,33 @@ export default class Riu
 
             this.debugFolder
             .addInput(
-                this.model.material2,
+                this.params,
                 'metalness',
                 {min: 0, max: 1, step: 0.0001}
             )
+            .on('change', () =>
+            {
+                if (this.params.metalnessMap) {
+                    this.model.material2.metalness = NaN
+                } else {
+                    this.model.material2.metalness = this.params.metalness
+                }
+            })
             this.debugFolder
             .addInput(
-                this.model.material2,
+                this.params,
                 'roughness',
                 {min: 0, max: 1, step: 0.0001}
             )
+            .on('change', () =>
+            {
+                if (this.params.roughnessMap) {
+                    this.model.material2.roughness = null
+                } else {
+                    console.log("lmao")
+                    this.model.material2.roughness = this.params.roughness
+                }
+            })
 
             this.debugFolder
             .addInput(
@@ -145,8 +164,12 @@ export default class Riu
             .on('change', () =>
             {
                 if (this.params.metalnessMap) {
+                    this.model.material2.metalness = null
                     this.model.material2.metalnessMap = this.model.metalnessRiuTexture
-                } else {this.model.material2.metalnessMap = null;}
+                } else {
+                    this.model.material2.metalnessMap = null
+                    this.model.material2.metalness = this.params.metalness
+                }
             })
             this.debugFolder
             .addInput(
@@ -157,8 +180,12 @@ export default class Riu
             .on('change', () =>
             {
                 if (this.params.roughnessMap) {
+                    this.model.material2.roughness = null
                     this.model.material2.roughnessMap = this.model.roughnessRiuTexture
-                } else {this.model.material2.roughnessMap = null;}
+                } else {
+                    this.model.material2.roughnessMap = null
+                    this.model.material2.roughness = this.params.roughness
+                }
             })
 
             // ANIMATION PAUSE
@@ -186,7 +213,6 @@ export default class Riu
     {
         if (this.params.play) {
             this.model.mesh.rotation.y =  this.time.elapsed * (this.params.speed/10000)
-            console.log(this.time.elapsed)
         } else {this.model.mesh.rotation.y = this.model.mesh.rotation.y}
     }
 }
