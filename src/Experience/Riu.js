@@ -19,7 +19,7 @@ export default class Riu
         {
             this.debugFolder = this.debug.addFolder({
                 title: 'Riuuu',
-                expanded: false
+                expanded: true
             })
         }
 
@@ -29,13 +29,33 @@ export default class Riu
     setModel()
     {
         this.model = {}
+        // console.log(this.resources.items.riuModel)
+
+        /**
+         * TEXTURES
+         */
+        this.model.mesh = this.resources.items.riuModel3.scene.children[0]
         
-        console.log(this.resources.items.riuModel)
-        this.model.mesh = this.resources.items.riuModel.scene.children[0]
+
         this.model.bakedRiuTexture = this.resources.items.bakedRiu
         this.model.bakedRiuTexture.encoding = THREE.sRGBEncoding
         this.model.bakedRiuTexture.flipY = false
+        // material2
+        this.model.colorRiuTexture = this.resources.items.colorRiu
+        this.model.colorRiuTexture.flipY = false
+        this.model.roughnessRiuTexture = this.resources.items.roughnessRiu
+        this.model.roughnessRiuTexture.flipY = false
+        this.model.metalnessRiuTexture = this.resources.items.metalnessRiu
+        this.model.metalnessRiuTexture.flipY = false
+        // this.model.normalRiuTexture = this.resources.items.normalRiu
+        // this.model.normalRiuTexture.flipY = false
+        this.model.displacementRiuTexture = this.resources.items.displacementRiu
+        this.model.displacementRiuTexture.flipY = false
 
+
+        /**
+         * MATERTIAL
+         */
         // this.model.material = new THREE.MeshStandardMaterial(
         //     {
         //         color: 0xd4af37,
@@ -44,11 +64,24 @@ export default class Riu
         //         roughness: 0.3
         //     }
         // )
-        this.model.material = new THREE.MeshBasicMaterial(
+        // this.model.material = new THREE.MeshBasicMaterial(
+        //     {
+        //         // color: 0xffff00,
+        //         map: this.model.colorRiuTexture,
+        //         side: THREE.DoubleSide,
+        //         transparent: true,
+        //     }
+        // )
+        this.model.material2 = new THREE.MeshStandardMaterial(
             {
-                map: this.model.bakedRiuTexture ,
+                map: this.model.colorRiuTexture,
                 side: THREE.DoubleSide,
-
+                transparent: true,
+                // roughnessMap: this.model.roughnessRiuTexture,
+                roughness: 0.25,
+                // metalnessMap: this.model.metalnessRiuTexture,
+                metalness: 1,
+                
             }
         )
 
@@ -56,13 +89,15 @@ export default class Riu
         {
             if(_child instanceof THREE.Mesh)
             {
-                _child.material = this.model.material
+                _child.material = this.model.material2
             }
         })
+        
 
         this.model.mesh.scale.set(.8,.8,.8)
-        this.model.mesh.position.set(0,0,0)
-        this.model.mesh.rotation.z = Math.PI 
+        // this.model.mesh.position.set(0,0,0)
+        // this.model.mesh.rotation.z = Math.PI 
+        console.log(this.model.mesh)
         
         this.scene.add(this.model.mesh)
 
@@ -70,6 +105,10 @@ export default class Riu
 
         this.params = {}
         this.params.visible = true
+        this.params.metalnessMap = false
+        this.params.roughnessMap = false
+        this.params.play = true
+        this.params.speed = 10
         // Debug
         if(this.debug)
         {
@@ -83,11 +122,71 @@ export default class Riu
             {
                 this.model.mesh.visible = this.params.visible
             })
+
+            this.debugFolder
+            .addInput(
+                this.model.material2,
+                'metalness',
+                {min: 0, max: 1, step: 0.0001}
+            )
+            this.debugFolder
+            .addInput(
+                this.model.material2,
+                'roughness',
+                {min: 0, max: 1, step: 0.0001}
+            )
+
+            this.debugFolder
+            .addInput(
+                this.params,
+                'metalnessMap',
+                { options: {ON: true, OFF: false} }
+            )
+            .on('change', () =>
+            {
+                if (this.params.metalnessMap) {
+                    this.model.material2.metalnessMap = this.model.metalnessRiuTexture
+                } else {this.model.material2.metalnessMap = null;}
+            })
+            this.debugFolder
+            .addInput(
+                this.params,
+                'roughnessMap',
+                { options: {ON: true, OFF: false} }
+            )
+            .on('change', () =>
+            {
+                if (this.params.roughnessMap) {
+                    this.model.material2.roughnessMap = this.model.roughnessRiuTexture
+                } else {this.model.material2.roughnessMap = null;}
+            })
+
+            // ANIMATION PAUSE
+            this.debugFolder
+            .addInput(
+                this.params,
+                'play',
+                {options: {PLAY: true, PAUSE: false}, label: 'Animation'}
+            )
+            .on('change', () =>
+            {
+                this.time.playing = this.params.play
+            })
+            this.debugFolder
+            .addInput(
+                this.params,
+                'speed',
+                {min: 1, max: 100, step: 1, label: 'Speed (10)'}
+            )
+
         }
     }
 
     update()
     {
-        this.model.mesh.rotation.z = - this.time.elapsed * 0.0005
+        if (this.params.play) {
+            this.model.mesh.rotation.y =  this.time.elapsed * (this.params.speed/10000)
+            console.log(this.time.elapsed)
+        } else {this.model.mesh.rotation.y = this.model.mesh.rotation.y}
     }
 }

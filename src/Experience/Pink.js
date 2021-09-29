@@ -19,7 +19,7 @@ export default class Pink
         {
             this.debugFolder = this.debug.addFolder({
                 title: 'pink',
-                expanded: true
+                expanded: false
             })
         }
 

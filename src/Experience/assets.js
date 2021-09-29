@@ -28,8 +28,19 @@ export default [
             // { name: 'roomModel', source: '/assets/roomModel.glb' },
             { name: 'bakedPink', source: '/assets/bakedPink.jpg', type: 'texture' },
             { name: 'pinkModel', source: '/assets/pink.glb' },
-            { name: 'bakedRiu', source: '/assets/bakedRiu.jpg', type: 'texture' },
-            { name: 'riuModel', source: '/assets/riu.glb' },
+
+            // RIU
+            { name: 'riuModel', source: '/assets/Riu/riu.glb' },
+            { name: 'riuModel2', source: '/assets/Riu/riuuu.glb' },
+            { name: 'riuModel3', source: '/assets/Riu/riuuuuu.glb' },
+            // material
+            { name: 'bakedRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
+            // material2
+            { name: 'colorRiu', source: '/assets/Riu/colorRiu.jpg', type: 'texture' },
+            { name: 'roughnessRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
+            { name: 'metalnessRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
+            // { name: 'normalRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
+            { name: 'displacementRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
         ]
     }
 ]
