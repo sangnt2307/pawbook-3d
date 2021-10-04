@@ -2,14 +2,7 @@ import * as THREE from 'three'
 import Experience from './Experience.js'
 import Pink from './Pink.js'
 import Riu from './Riu.js'
-// import Baked from './Baked.js'
-// import GoogleLeds from './GoogleLeds.js'
-// import LoupedeckButtons from './LoupedeckButtons.js'
-// import CoffeeSteam from './CoffeeSteam.js'
-// import TopChair from './TopChair.js'
-// import ElgatoLight from './ElgatoLight.js'
-// import BouncingLogo from './BouncingLogo.js'
-// import Screen from './Screen.js'
+
 
 export default class World
 {
@@ -27,16 +20,7 @@ export default class World
             if(_group.name === 'base')
             {
                 this.setPink()
-                this.setRiu()
-                this.setLights()
-                // this.setBaked()
-                // this.setGoogleLeds()
-                // this.setLoupedeckButtons()
-                // this.setCoffeeSteam()
-                // this.setTopChair()
-                // this.setElgatoLight()
-                // this.setBouncingLogo()
-                // this.setScreens()
+                // this.setLights()
             }
         })
 
@@ -151,26 +135,11 @@ export default class World
 
     update()
     {
-        // if(this.pink)
-        //     this.pink.update()
+        if(this.pink)
+            this.pink.update()
 
-        if(this.riu)
-            this.riu.update()
-        
-        // if(this.googleLeds)
-        //     this.googleLeds.update()
-
-        // if(this.loupedeckButtons)
-        //     this.loupedeckButtons.update()
-
-        // if(this.coffeeSteam)
-        //     this.coffeeSteam.update()
-
-        // if(this.topChair)
-        //     this.topChair.update()
-
-        // if(this.bouncingLogo)
-        //     this.bouncingLogo.update()
+        // if(this.riu)
+        //     this.riu.update()
     }
 
     destroy()

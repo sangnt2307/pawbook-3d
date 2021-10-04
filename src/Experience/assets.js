@@ -29,6 +29,7 @@ export default [
             { name: 'bakedPink', source: '/assets/bakedPink.jpg', type: 'texture' },
             { name: 'pinkModel', source: '/assets/pink.glb' },
 
+            /**
             // RIU
             { name: 'riuModel', source: '/assets/Riu/riu.glb' },
             { name: 'riuModel2', source: '/assets/Riu/riuuu.glb' },
@@ -41,6 +42,7 @@ export default [
             { name: 'metalnessRiu', source: '/assets/Riu/metalnessRiu.jpg', type: 'texture' },
             // { name: 'normalRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
             { name: 'displacementRiu', source: '/assets/Riu/bakedRiu.jpg', type: 'texture' },
+             */
         ]
     }
 ]

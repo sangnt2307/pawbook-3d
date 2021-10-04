@@ -74,7 +74,7 @@ export default class Experience
     
         // Pixel ratio
         this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
-
+        
         // Width and height
         const boundings = this.targetElement.getBoundingClientRect()
         this.config.width = boundings.width

@@ -19,7 +19,7 @@ export default class Pink
         {
             this.debugFolder = this.debug.addFolder({
                 title: 'pink',
-                expanded: false
+                expanded: true
             })
         }
 
@@ -36,14 +36,6 @@ export default class Pink
         this.model.bakedPinkTexture.encoding = THREE.sRGBEncoding
         this.model.bakedPinkTexture.flipY = false
 
-        // this.model.material = new THREE.MeshStandardMaterial(
-        //     {
-        //         color: 0xd4af37,
-        //         side: THREE.DoubleSide,
-        //         metalness: 1,
-        //         roughness: 0.3
-        //     }
-        // )
         this.model.material = new THREE.MeshBasicMaterial(
             {
                 map: this.model.bakedPinkTexture ,
@@ -63,13 +55,13 @@ export default class Pink
         this.model.mesh.scale.set(2,2,2)
         this.model.mesh.rotation.z = Math.PI 
         this.model.mesh.position.set(0,0,0)
-        this.model.mesh.visible = false
+        this.model.mesh.visible = true
         
         this.scene.add(this.model.mesh)
 
         // Debug
         this.params = {}
-        this.params.visible = false
+        this.params.visible = true
         
         if(this.debug)
         {
